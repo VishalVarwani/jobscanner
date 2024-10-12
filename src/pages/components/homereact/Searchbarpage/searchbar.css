@@ -1,0 +1,180 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #171717;
+    --border-color: #ddd;
+    --heading-text-color: #ffffff;
+    --input-bg-color: #e0e4e8;
+    --button-bg-color: #333;
+    --button-hover-bg-color: #555;
+    --button-text-color: #ffffff;
+    --button-border-radius: 30px;
+    --search-bar-border-radius: 30px;
+    --input-border-radius: 4px;
+    --section-padding-left: 100px;
+    --frosted-shadow-color: rgba(255, 255, 255, 0.4); /* Light frosted shadow color */
+    --frosted-border-color: rgba(255, 255, 255, 0.5); /* Frosted border color */
+}
+.ParentHome {
+    display: flex;
+    height: 80vh;
+
+  
+}
+
+.Searchforjobssection {
+    background-color: var(--primary-color);
+    width: 100%;
+    padding-left: var(--section-padding-left);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.Searchforjobssection h4 {
+    border: 2px solid var(--heading-bg-color);
+    border-radius: 30px; /* Circular border for the heading */
+    padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
+    margin: 0; /* Remove default margin */
+    transition: border-color 0.3s ease;
+    font-size: 16px;
+    color: var(--heading-text-color);
+    background-color: var(--heading-bg-color);
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    gap: 10px;
+    align-items: flex-start; /* Align items to the left */
+    border: 2px solid var(--frosted-border-color); /* Frosted border color */
+    border-radius: var(--search-bar-border-radius); /* Rounded border for the search bar */
+    padding: 20px; /* Adjust padding as needed */
+    background-color: var(--secondary-color);
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px var(--frosted-shadow-color); /* Add frosted shadow for depth */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For WebKit browsers */
+}
+
+.search-bar .input-group {
+    display: flex;
+    flex-direction: row; /* Arrange input fields in a row */
+    gap: 10px; /* Space between input fields */
+    width: 100%;
+}
+
+.input1, .Positionsinput {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--input-border-radius);
+    background-color: var(--input-bg-color);
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 40%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for inputs */
+}
+
+
+
+.Positionsinput {
+    width: 15%; /* Fixed width for select element */
+}
+
+.more-filters {
+    padding: 10px 20px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid transparent; /* Border for button */
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-size: 14px;
+    width: 15%; /* Full width of the parent container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for button */
+}
+
+.more-filters:hover {
+    background-color: var(--button-hover-bg-color);
+    border-color: var(--button-hover-bg-color); /* Border color on hover for better visual feedback */
+}
+
+/* Placeholder styling */
+.input1::placeholder, .Positionsinput::placeholder {
+    color: #999; /* Replace with your desired placeholder color */
+    opacity: 1; /* Ensure the placeholder text is fully opaque */
+}   
+.Searchbutton {
+    padding: 10px 20px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid transparent; /* Border for button */
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    font-size: 14px;
+    width: 15%; /* Full width of the parent container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for button */
+}
+
+.Searchbutton:hover {
+    background-color: var(--button-hover-bg-color);
+    border-color: var(--button-hover-bg-color); /* Border color on hover for better visual feedback */
+}
+
+.typing-container {
+    position: relative;
+    display: inline-block;
+}
+.searchforjobs{
+    border-radius: 9999px;
+    padding: 6px 15px; /* Add padding for better appearance */
+    background-color: #626161; /* Change background color on hover */
+}
+.searchforjobs::before{
+    padding: 6px 15px; /* Add padding for better appearance */
+
+    background-color: #626161; /* Change background color on hover */
+    border-radius: 9999px;
+}
+/* Dynamic typing effect for span */
+.dynamic-typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 8s steps(60, end) infinite, blink-caret 0.75s step-end infinite;
+    color: white;
+    max-width: 600px; /* Set a max width to control overflow */
+    border-right: 2px solid white; /* Simulate a typing cursor */
+    padding-right: 3px;
+}
+
+/* Typing animation */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 120%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: white;
+    }
+  }

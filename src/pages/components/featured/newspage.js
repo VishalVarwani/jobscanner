@@ -1,6 +1,5 @@
 import React from 'react';
 import './newspage.css'; // CSS for styling the cards
-import RainbowCursorTrail from '../testfolder/test2';
 
 const Card = ({ title, description }) => {
     return (

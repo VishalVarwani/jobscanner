@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './test2.css';
+import './curser.css';
 
 const RainbowCursorTrail = () => {
   const [trails, setTrails] = useState([]);

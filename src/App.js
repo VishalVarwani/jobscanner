@@ -4,10 +4,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from './pages/components/headerreact/headerpage';
 import Home from './pages/components/homereact/homepage';
 import Search from './pages/components/homereact/Searchbarpage/searchbar';
-import Particless from './pages/components/homereact/Searchbarpage/particlesbackground';
-import ParticlesComponent from './pages/components/homereact/Searchbarpage/particles';
+
 import News from './pages/components/featured/newspage';
-import RainbowCursorTrail from './pages/components/testfolder/test2';
+import RainbowCursorTrail from './pages/components/curserpage/curser';
+import Results from './pages/components/searchresults/results';
+import JobResults from './pages/components/searchresults/results';
+import Searchagain from './pages/components/searchresults/searchagain';
+import SavedJobs from './pages/components/searchresults/save';
 
 function App() {
   return (
@@ -21,7 +24,13 @@ function App() {
     <Route path='search' element={<Search/>}/>
 
     <Route path='news' element={<News/>}/>
+    <Route path='jobresults' element={<JobResults/>}/>
+    <Route path='searchagain' element={<Searchagain/>}/>
 
+    <Route path='/savedjobs' element={<SavedJobs/>}/>
+
+
+    
 
 
 

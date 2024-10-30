@@ -1,49 +1,104 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook for navigation
 import './searchbar.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import ParticlesComponent from './particles';
 export default function Search() {
   const [jobTitle, setJobTitle] = useState('');
   const [location, setLocation] = useState('');
-  const [position, setPosition] = useState('All Positions'); // Add state for position filter
+  const [jobs, setJobs] = useState([]); // Store jobs from both platforms
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [activePlatform, setActivePlatform] = useState('both'); // Track active platform
 
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch('/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ job_title: jobTitle, location: location, position: position }),
-      });
-      const data = await response.json();
-      if (data.message) {
-        console.log(data.message);
-        fetchJobs(); // Fetch jobs after posting new search
+  const handleFetchJobs = async (e) => {
+      e.preventDefault(); // Prevent form submission and page refresh
+      if (!jobTitle || !location) {
+          alert('Please enter both job title and location.');
+          return;
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+      setError('');
+      setLoading(true);
+
+      try {
+          // Post job search request to both platforms
+          await Promise.all([
+              axios.post('http://localhost:3004/fetch-jobs', {
+                  job_title: jobTitle,
+                  location: location,
+              }),
+              axios.post('http://localhost:3001/fetch-jobs', {
+                  job_title: jobTitle,
+                  location: location,
+              }),
+          ]);
+
+          // Fetch jobs from both platforms
+          const fetchedJobs = await fetchJobs();
+
+          // Navigate to JobListingsPage and pass the fetched jobs as state
+          navigate('/jobresults', { state: { jobs: fetchedJobs } });
+
+      } catch (err) {
+          setError('Error fetching jobs. Please try again.');
+          console.error(err);
+      } finally {
+          setLoading(false);
+      }
   };
 
   const fetchJobs = async () => {
-    try {
-      const response = await fetch('/api');
-      const data = await response.json();
-      console.log('Fetched data:', data); // Log the data to see its structure
-      if (Array.isArray(data)) {
-        // Navigate to results page with job data as state
-        navigate('/jobresults', { state: { jobs: data } });
-      } else {
-        console.error('Unexpected data format:', data);
+      try {
+          // Fetch jobs from both platforms
+          const [indeedResponse, linkedinResponse] = await Promise.all([
+              axios.get('http://localhost:3004/jobs'),
+              axios.get('http://localhost:3001/get-jobs'),
+          ]);
+
+          // Merge job results from both platforms
+          const mergedJobs = [
+              ...indeedResponse.data.map(job => ({
+                  JobTitle: job.JobTitle,
+                  CompanyName: job.CompanyName,
+                  JobLocation: job.JobLocation,
+                  JobLink: job.JobLink,
+                  Source: 'Indeed', // Indicate the source
+              })),
+              ...linkedinResponse.data.map(job => ({
+                  JobTitle: job.Title,
+                  CompanyName: job.Company,
+                  JobLocation: job.Location,
+                  JobLink: job.Link,
+                  Source: 'LinkedIn', // Indicate the source
+              })),
+          ];
+
+          setJobs(mergedJobs);
+          return mergedJobs; // Return merged jobs for navigation
+
+      } catch (err) {
+          setError('Error fetching job listings. Please try again.');
+          console.error(err);
+          return [];
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+  };
+
+  const handlePlatformSwitch = (platform) => {
+      setActivePlatform(platform);
+      if (platform === 'indeed') {
+          setJobs(prevJobs => prevJobs.filter(job => job.Source === 'Indeed'));
+      } else if (platform === 'linkedin') {
+          setJobs(prevJobs => prevJobs.filter(job => job.Source === 'LinkedIn'));
+      } else {
+          // Re-fetch all jobs if 'both' is selected
+          // Alternatively, store all jobs before filtering
+          // For simplicity, you can maintain another state variable for all jobs
+          // Here, assuming jobs are already stored in `jobs`
+          // This may require adjustment based on your actual implementation
+          fetchJobs();
+      }
   };
 
   return (
@@ -55,7 +110,7 @@ export default function Search() {
           <h2 className="dynamic-typing">You might be one step away from a new opportunity</h2>
           
         <h4 className='searchforjobs'>Search For Jobs</h4>
-        <form onSubmit={handleSubmit} className="search-bar">
+        <form onSubmit={handleFetchJobs} className="search-bar">
           <div className="input-group">
 
             <input
@@ -73,12 +128,8 @@ export default function Search() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <button type="submit" className="Searchbutton">Search</button>
-          </div>
-          <select
+             <select
             className="Positionsinput"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
           >
             <option>All Positions</option>
             <option>Work Student</option>
@@ -86,6 +137,11 @@ export default function Search() {
             <option>Part-time</option>
           </select>
           <button type="button" className="more-filters">More Filters</button>
+
+ <button type="submit" className="Searchbutton" disabled={loading}>
+                            {loading ? 'Searching...' : 'Search'}
+                        </button>          </div>
+         
         </form>
       </div>
     </div>

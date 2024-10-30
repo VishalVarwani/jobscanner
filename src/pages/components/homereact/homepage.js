@@ -5,7 +5,6 @@ import banner from "C:/Users/Vishal/Desktop/jobscanner/myapp/src/pages/images/ba
 import Search from './Searchbarpage/searchbar';
 import News from '../featured/newspage';
 import Demo from '../testfolder/test';
-import RainbowCursorTrail from '../testfolder/test2';
 
 const Home = () => {
   return (
@@ -14,10 +13,7 @@ const Home = () => {
         <Search/>
       </div>
       <div className="Banner">
-        <h1 className='abouttitle'> Haus is a Los Angeles-based agency that
-pushes the boundaries of technology,
-strategy, design and content to create lasting
-relationships between brands & customers.</h1>
+        <h2 className='abouttitle'>JobScanner aggregates data from all major job boards, <br/>offering a centralized hub for comprehensive job listings,<br/> across industries.</h2>
         <Link to="/" className="banner-content">
       
           <span className="banner-text-left typewriter">Tired of jumping between job boards?</span>

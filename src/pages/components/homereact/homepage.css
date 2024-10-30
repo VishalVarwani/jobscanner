@@ -1,5 +1,6 @@
+
 .Homepage {
-  background-color: #171717
+  background-color: rgb(41, 41, 41)
 
 }
 
@@ -15,13 +16,12 @@
 }
 .abouttitle{
   text-align: center;
-  grid-column: 3 / -3;
   padding: 40px;
   font-size: 50.688px;
   line-height: 55.7568px;
   letter-spacing: -0.96px;
   color: #ffffff;
-  font-family: __monument_a1958f, __monument_Fallback_a1958f;
+  font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif
 }
 
 .banner-text-left,

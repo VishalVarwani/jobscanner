@@ -1,7 +1,7 @@
 import React from 'react';
 import './homepage.css';
 import { Link } from 'react-router-dom';
-import banner from "C:/Users/Vishal/Desktop/jobscanner/myapp/src/pages/images/banner.png";
+import banner from "../../images/banner.png";
 import Search from './Searchbarpage/searchbar';
 import News from '../featured/newspage';
 import Demo from '../testfolder/test';

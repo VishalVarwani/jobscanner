@@ -186,7 +186,7 @@ import { Link } from 'react-router-dom';
         {job.Source}
     </Link>
   <a
-  href={`${job.JobLink}?utm_source=JobScanner&utm_medium=referral&utm_campaign=job_listings`}
+  href='https://valentinee-rouge.vercel.app/?utm_source=jobscanner&utm_medium=referral'
   target='_blank'
   rel='noopener noreferrer'
   className='apply-link'

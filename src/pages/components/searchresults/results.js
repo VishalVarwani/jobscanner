@@ -186,13 +186,13 @@ import { Link } from 'react-router-dom';
         {job.Source}
     </Link>
     <a
-  href={`${job.JobLink}?utm_source=JobScanner&utm_medium=referral&utm_campaign=job_listings`}
-  target='_blank'
-  rel='noopener noreferrer'
-  className='apply-link'
->
-  Apply now
-</a>
+                      href={job.JobLink}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='apply-link'
+                    >
+                      Apply now
+                    </a>
 </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "30px", marginLeft:"85px" }}>
                             <div style={{ display: "flex", alignItems: "center" }}>

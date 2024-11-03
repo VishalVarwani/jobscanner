@@ -11,13 +11,15 @@ import Results from './pages/components/searchresults/results';
 import JobResults from './pages/components/searchresults/results';
 import Searchagain from './pages/components/searchresults/searchagain';
 import SavedJobs from './pages/components/searchresults/save';
+import Login from './pages/components/auth/login/login';
+import Signup from './pages/components/auth/signup/Signup';
+import User from './pages/components/userprofile/profile';
 
 function App() {
   return (
     <div className="App">
       <RainbowCursorTrail/>
       <BrowserRouter>
-      <Header/>
       <Routes>
        
     <Route path='/' element={<Home/>}/>
@@ -27,7 +29,12 @@ function App() {
     <Route path='jobresults' element={<JobResults/>}/>
     <Route path='searchagain' element={<Searchagain/>}/>
 
-    <Route path='/savedjobs' element={<SavedJobs/>}/>
+    <Route path='/savedjobs' element={<SavedJobs/>}/> 
+       <Route path='/login' element={<Login/>}/>
+       <Route path='/signup' element={<Signup/>}/>
+       <Route path='/profile' element={<User/>}/>
+
+
 
 
     

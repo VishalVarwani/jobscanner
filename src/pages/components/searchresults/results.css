@@ -273,7 +273,7 @@
 
 /* Change background color on hover */
 .options:hover {
-  background-color: #0c396b !important;
+  background-color: #0073b1 !important;
   color: white;
 }
 
@@ -282,7 +282,9 @@
   background-color: black; /* Color when button is active */
   color: #fff; /* White text color for active button */
 }
-
+input::placeholder{
+  color:"white"
+}
 .optionbutton {
 display: flex;
 justify-content: center;
@@ -325,3 +327,28 @@ font-weight: bold;
 .apply-link:hover {
 text-decoration: underline;
 } 
+
+.apply-link {
+  display: inline-block;
+  background-color: #0073b1; /* LinkedIn blue */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+}
+
+.apply-link:hover {
+  background-color: #005b8f; /* Darker blue for hover effect */
+  text-decoration: none; /* Keeps it clean without underline */
+  transform: translateY(-2px); /* Lift effect on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly bigger shadow on hover */
+}
+
+.apply-link:active {
+  background-color: #004470; /* Even darker blue when clicked */
+  transform: translateY(0); /* Reset position on click */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Smaller shadow on active */
+}

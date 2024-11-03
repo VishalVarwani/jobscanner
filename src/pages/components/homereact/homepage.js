@@ -5,10 +5,16 @@ import banner from "../../images/banner.png";
 import Search from './Searchbarpage/searchbar';
 import News from '../featured/newspage';
 import Demo from '../testfolder/test';
+import Header from '../headerreact/headerpage';
+
 
 const Home = () => {
+
+  
   return (
     <div className="Homepage">
+
+      <Header/>
        <div className="Searchbarsection">
         <Search/>
       </div>
@@ -25,9 +31,9 @@ const Home = () => {
         </Link>
       </div>
      
-      <div>
+      {/* <div>
         <News />
-      </div>
+      </div> */}
     </div>
   );
 };

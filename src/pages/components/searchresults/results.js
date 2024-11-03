@@ -9,8 +9,9 @@
     import save from "../../images/save.png";
     import Alert from '@mui/material/Alert';
 
-
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from '../headerreact/headerpage';
 
     export default function JobResults() {
     const location = useLocation();
@@ -38,19 +39,32 @@ import { Link } from 'react-router-dom';
         setDisplayedJobs(jobs); // Show both
         }
     };
-    const handleSaveJob = (job) => {
-        const updatedSavedJobs = [...savedJobs, job]; // Add the job to the saved jobs array
-        setSavedJobs(updatedSavedJobs);
-        localStorage.setItem('savedJobs', JSON.stringify(updatedSavedJobs)); // Store in localStorage
+    const loggedInUserEmail = localStorage.getItem("loggedInUserEmail");
+
+    const handleSaveJob = async (job) => {
+        if (!loggedInUserEmail) {
+            alert("User email not available.");
+            return;
+        }
     
-        // Show the alert
-        setAlertVisible(true);
+        try {
+            const response = await axios.post("http://localhost:8000/save-job", {
+                email: loggedInUserEmail,
+                job
+            });
     
-        // Hide the alert after 3 seconds
-        setTimeout(() => {
-          setAlertVisible(false);
-        }, 3000);
-      };
+            if (response.data === "Job saved successfully") {
+                setAlertVisible(true);
+                setTimeout(() => setAlertVisible(false), 3000);
+            } else {
+                alert(response.data);
+            }
+        } catch (error) {
+            console.error("Error saving job:", error);
+            alert("Failed to save job");
+        }
+    };
+    
   
     useEffect(() => {
         if (jobs.length === 0) {
@@ -75,6 +89,7 @@ import { Link } from 'react-router-dom';
 
     return (
         <div className='JobResults'>
+            <Header/>
              {alertVisible && (
         <Alert variant="filled" severity="success" style={{ marginBottom: '20px', width:"300px" }}>
           Job has been saved successfully!
@@ -96,7 +111,7 @@ import { Link } from 'react-router-dom';
             <div className='filter-option'>
                 <label>Location</label>
                 <input
-                style={{ width: '90%', padding: '8px' }}
+                style={{ padding: '8px' }}
                 type='text'
                 placeholder='Enter your location'
                 />
@@ -180,19 +195,23 @@ import { Link } from 'react-router-dom';
             {job.CompanyName}
         </p>
     </div>
-    
-    {/* This is the job source link, it will be pushed to the far right */}
+    <div style={{display:"flex", flexDirection:"column"}}>
     <Link to={job.Source}className='source' style={{ marginLeft: "auto", color: "white", textDecoration: "none", fontSize: "17px" }}>
         {job.Source}
     </Link>
-  <a
-  href={`${job.JobLink}?utm_source=JobScanner&utm_medium=referral&utm_campaign=job_listings`}
-  target='_blank'
-  rel='noopener noreferrer'
-  className='apply-link'
->
-  Apply now
-</a>
+    <Link
+            to={`${job.JobLink}?utm_source=JobScanner&utm_medium=referral&utm_campaign=job_listings`}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='apply-link' // Apply the enhanced CSS styling here
+            style={{ marginTop: "10px",color:"white"}}
+          >
+            Apply Now
+          </Link>
+         </div>
+    {/* This is the job source link, it will be pushed to the far right */}
+   
+
 </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "30px", marginLeft:"85px" }}>
                             <div style={{ display: "flex", alignItems: "center" }}>
@@ -215,7 +234,7 @@ import { Link } from 'react-router-dom';
                                 <img src={calenderimg} alt="Clock Icon" style={{ marginRight: "5px" }} />
                                 <p style={{ fontSize: "17px", margin: "0" }}>30 mins ago</p>
                             </div>
-                            
+                           
                             </div>
                             <p style={{ display: "flex", alignItems: "center", gap: "30px", marginLeft:"85px", marginTop:"30px" }}>The sun dipped below the horizon, painting the sky in shades of pink and orange. A gentle breeze whispered through the trees, carrying the scent of fresh rain.
                            

@@ -42,6 +42,8 @@
 
   animation: typing 8s steps(60, end) infinite, blink-caret 0.75s step-end infinite;
   font-family: __monument_mono_a40341, __monument_mono_Fallback_a40341;
+  text-decoration: none !important;
+  list-style: none !important;
 }
 
 /* Typing animation */

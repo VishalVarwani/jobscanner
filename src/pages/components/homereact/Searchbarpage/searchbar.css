@@ -41,7 +41,8 @@
         color: var(--heading-text-color);
         background-color: var(--heading-bg-color);
         font-weight: bold;
-        font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif
+        font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif;
+        margin-left: 5px !important;
 
     }
 
@@ -158,10 +159,11 @@
         overflow: hidden;
         animation: typing 8s steps(60, end) infinite, blink-caret 0.75s step-end infinite;
         color: white;
-        max-width: 690px; 
+        max-width: 665px; 
         border-right: 2px solid white; /* Simulate a typing cursor */
         font-size: 30px;
-        font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif
+        font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif;
+        margin-left: 20px;
 
     }
 

@@ -1,28 +1,19 @@
 header {
-    
+
     background-color: rgb(17 17 17);
     position: relative; /* Ensure positioning for the animation */
     animation: slideDown 0.5s ease forwards; /* Apply the animation */
   }
   
-  /* Keyframes for slide down animation */
-  @keyframes slideDown {
-    from {
-      transform: translateY(-100%); /* Start above the viewport */
-      opacity: 0; /* Initially hidden */
-    }
-    to {
-      transform: translateY(0); /* End at original position */
-      opacity: 1; /* Fully visible */
-    }
-  }
+
   
-  nav {
+  .navheader {
     display: flex;
     align-items: center; /* Ensures items are aligned in the center */
+    
   }
   
-  ul {
+  .ulheader {
     display: flex;
     padding: 0;
     margin-left: 100px;
@@ -31,11 +22,15 @@ header {
   }
   
   ul li {
+    margin-top: 10px !important;
+
     list-style: none;
     font-weight: 600;
+    
   }
   
   li a {
+
     color: #ffffff;
     text-decoration: none;
     font-size: 14px;
@@ -44,11 +39,14 @@ header {
     font-family: Calisto MT, Bookman Old Style, Bookman, Goudy Old Style, Garamond, Hoefler Text, Bitstream Charter, Georgia, serif;
     font-weight: 400;
 
+
   }
   
   li a:hover {
     background-color: #2a2a2a; /* Change background color on hover */
     border-radius: 10px; /* Add border radius on hover */
+    color: white;
+    list-style: none !important;
   }
   
   .logo {
@@ -57,6 +55,7 @@ header {
     font-weight: 600;
     color: #ffffff;
     line-height: 20px;
+    margin-top: 10px;
   }
   
   .accountinfo {
